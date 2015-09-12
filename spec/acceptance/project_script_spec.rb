@@ -2,6 +2,12 @@ require_relative '../../spec/spec_helper'
 
 describe 'project', type: :feature do
 
+  before do
+    configure do
+      { observed_folders: [] }
+    end
+  end
+
   describe 'wrong arguments' do
     subject { run("project something") }
 
