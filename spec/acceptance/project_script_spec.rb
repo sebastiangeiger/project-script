@@ -29,6 +29,20 @@ describe 'project', type: :feature do
         subject
         expect($?).to be_success
       end
+
+      context 'with a git folder inside of an observed folder' do
+        before do
+          configure do
+            { observed_folders: ["spec/sandbox/projects"] }
+          end
+          create_git_repo "spec/sandbox/projects/project_1",
+            remotes: { origin: "https://github.com/sebastiangeiger/project_1" }
+        end
+
+        it 'writes to the configuration file' do
+          expect { subject }.to change { configuration["projects"] }
+        end
+      end
     end
   end
 end
