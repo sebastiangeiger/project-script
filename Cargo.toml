@@ -1,0 +1,4 @@
+[package]
+name = "project-script"
+version = "0.1.0"
+authors = ["Sebastian Geiger"]
