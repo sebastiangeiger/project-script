@@ -2,3 +2,7 @@
 name = "project-script"
 version = "0.1.0"
 authors = ["Sebastian Geiger"]
+
+[dependencies]
+docopt = "0.6"
+rustc-serialize = "0.3"

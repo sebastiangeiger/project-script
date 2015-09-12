@@ -1,0 +1,10 @@
+language: rust
+rust: stable
+
+install:
+    - bundle install
+
+script:
+    - cargo build
+    - cargo test
+    - bundle exec rspec

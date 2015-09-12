@@ -1,4 +1,4 @@
-#Sebastian's `project` Script Suite
+#`project` script suite [![Build Status](https://travis-ci.org/sebastiangeiger/project-script.svg?branch=master)](https://travis-ci.org/sebastiangeiger/project-script)
 
 The `project` suite simplifies common workflows that I use on almost every project.
 This tool might not necessarily be for you but I hope you can draw some inspiration from it.
@@ -9,16 +9,13 @@ The `~/.projects` file is storing the data in JSON.
 I am assuming you are keeping the `~/.projects` file in sync using Dropbox or Owncloud.
 
 ## Options
-### `--config FILE`
+### `--config=<FILE>`
 Will use FILE instead of `~/.projects` as source for configuration
 ### `--dry-run`
 You can preview what changes a command would do by adding `--dry-run`.
 This will print out the changes instead of executing them.
 
 ## Subcommands
-
-In order to help readability some of the subcommands use plural projects.
-These subcommands operate on a collection of projects
 
 ### `project-list-pull`
 
