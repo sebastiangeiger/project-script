@@ -2,6 +2,10 @@ extern crate rustc_serialize;
 extern crate docopt;
 
 use docopt::Docopt;
+use config::CliOptions;
+use config::Args;
+
+mod config;
 
 const USAGE: &'static str = "
 Project script suite
@@ -17,21 +21,13 @@ Options:
   -h --help       Show this screen.
   --version       Show version.
   --dry-run       Propose changes, don't execute.
- --config=<FILE>  Configuration file [default: ~/.projects].
+  --config=<FILE>  Configuration file [default: ~/.projects].
 ";
 
-#[derive(Debug, RustcDecodable)]
-struct Args {
-    flag_dry_run: bool,
-    arg_name: Vec<String>,
-    cmd_list: bool,
-    cmd_push: bool,
-    flag_config: String,
-}
-
+#[allow(dead_code)]
 fn main() {
-    let args: Args = Docopt::new(USAGE)
-                            .and_then(|d| d.decode())
-                            .unwrap_or_else(|e| e.exit());
-    println!("{:?}", args);
+    let args: config::Args = Docopt::new(USAGE)
+        .and_then(|d| d.decode())
+        .unwrap_or_else(|e| e.exit());
+    let cli_options = CliOptions::from(&args).unwrap();
 }
