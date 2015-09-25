@@ -5,6 +5,7 @@ use docopt::Docopt;
 use config::CliOptions;
 use config::Args;
 
+mod subcommands;
 mod config;
 
 const USAGE: &'static str = "
@@ -30,4 +31,14 @@ fn main() {
         .and_then(|d| d.decode())
         .unwrap_or_else(|e| e.exit());
     let cli_options = CliOptions::from(&args).unwrap();
+    let subcommand = find_subcommand(&args);
+    subcommand(cli_options);
 }
+
+fn find_subcommand(args: &Args) -> fn(config::CliOptions){
+    match args {
+        &Args { cmd_push: true, cmd_list: true, .. } => subcommands::list_push,
+        &Args { .. } => panic!("Not a valid command")
+    }
+}
+
